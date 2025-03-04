@@ -1,0 +1,17 @@
+build:
+  environment:
+    python: "3.12"  # Use your desired Python version
+  dependencies:
+    cache: true
+    override:
+      # Ensure pip is installed and upgraded for PyPy
+      - python3 -m ensurepip
+      - python3 -m pip install --upgrade pip
+      # Install required Python packages
+      - pip install telebot pytz flask aiogram pymongo pyTelegramBotAPI python-telegram-bot motor
+  tests:
+    override:
+      # Make the "PAID" script executable if it exists
+      - chmod +x PAID || true
+      # Run your Python script
+      - python3 paid.py
